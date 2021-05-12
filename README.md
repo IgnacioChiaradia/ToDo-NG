@@ -5,6 +5,6 @@
 | Integrantes  |
 | ----------- | 
 | Carlos Nuñez | 
-| Ignacia Chiaradia |
+| Ignacio Chiaradia |
 | Leonardo Velozo |
 | Silvania Ortega |
