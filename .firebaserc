@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "todo-ng-fe422": {
+      "hosting": {
+        "todong": [
+          "todo-ng-fe422"
+        ]
+      }
+    }
+  }
+}
