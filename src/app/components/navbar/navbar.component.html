@@ -27,23 +27,23 @@
          
         </ul>
         <div class="d-flex" style="justify-content: center;">
-          <div class="" *ngIf="true; else loggued" >
+          <div class="" *ngIf="!logged; else notLoggued" >
             <a type="button" [routerLink]="['/login']" routerLinkActive="router-link-active"  class="btn btn-secondary">INICIAR SESION</a>
           </div>
 
           <div >
 
-              <ng-template #loggued>
+              <ng-template #notLoggued>
 
                 <div class="btn-group" dropdown>
                     <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                             aria-controls="dropdown-basic">
-                      PEPE<span class="caret"></span>
+                      {{user.displayName}}<span class="caret"></span>
                     </button>
                     <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
                         role="menu" aria-labelledby="button-basic">
                       <li role="menuitem"><a class="dropdown-item" href="#">Config</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="#">Salir</a></li>
+                      <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Salir</a></li>
                     </ul>
                   </div>
 
