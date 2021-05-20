@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
       if(actualUser){
         this.user = actualUser;
         this.logged = true
-        console.log("my user: " + this.user.displayName)
+        
       } 
     })
   }

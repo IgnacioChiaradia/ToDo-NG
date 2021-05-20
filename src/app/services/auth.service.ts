@@ -19,7 +19,7 @@ export class AuthService {
     }
 
     async loginGoogle(){
-      console.log('hiciste click')
+      
       return await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     }
 
@@ -28,7 +28,7 @@ export class AuthService {
     }
 
     logout(){
-      console.log("asdasdasds2")
+    
       this.auth.signOut()
       localStorage.clear()
     }

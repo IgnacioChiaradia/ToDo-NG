@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   loginWithGoogle(){
     this.authService.loginGoogle().then((data)=>{
-      console.log(data)
+     // console.log(data)
     })
   }
 

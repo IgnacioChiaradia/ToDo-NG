@@ -22,7 +22,7 @@ export class ListTasksComponent implements OnInit {
         let task:any = {};
         task = t.data() // guardo data
         task.id = t.id; // guardo el id para despues poder modificar
-        console.log(task) // muestro la tares en consola
+        //console.log(task) // muestro la tares en consola
         this.tasks.push(task); // agregar al arreglo la tarea
       });
     
