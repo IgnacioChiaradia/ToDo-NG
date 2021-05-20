@@ -14,13 +14,15 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // bootstrap
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './components/home/home.component';
+import { ListTasksComponent } from './components/list-tasks/list-tasks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ListTasksComponent
   ],
   imports: [
     BrowserModule,

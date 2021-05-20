@@ -12,11 +12,13 @@ export class NavbarComponent implements OnInit {
 
   user: firebase.default.User
   logged: Boolean = false 
+  isLoading: Boolean = true
 
   constructor(private authService: AuthService) {}
 
   async ngOnInit() {    
     this.authService.getCurrentUser().subscribe(actualUser=>{
+      this.isLoading = false
       if(actualUser){
         this.user = actualUser;
         this.logged = true
