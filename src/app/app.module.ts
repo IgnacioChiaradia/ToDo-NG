@@ -15,6 +15,9 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './components/home/home.component';
 import { ListTasksComponent } from './components/list-tasks/list-tasks.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ListTasksComponent } from './components/list-tasks/list-tasks.component
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    ListTasksComponent
+    ListTasksComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { ListTasksComponent } from './components/list-tasks/list-tasks.component
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BsDropdownModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

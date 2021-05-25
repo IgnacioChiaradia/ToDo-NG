@@ -12,4 +12,8 @@ export class TasksService {
   getTasks(){
     return this.firestore.collection('tasks').get();
   }
+
+  addTask(task: any): Promise<any>{
+    return this.firestore.collection('tasks').add(task)
+  }
 }
