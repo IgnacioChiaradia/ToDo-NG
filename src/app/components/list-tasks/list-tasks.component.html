@@ -1,37 +1,29 @@
 <div class="container mt-5">
-    <h2 class="text-center">Mis tareas</h2>
-    <!--<table class="table table-striped">
+    <div class="header">
+      <h2 class="text-center">Mis tareas</h2>
+      <button class="btn btn-primary" [routerLink]="['/create']">Agregar</button>
+    </div>
+    <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Fecha</th>
+            <th scope="col">Realizada</th>
             <th scope="col">Titulo</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Visualizar</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="table-active">
-            <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+          <tr class="table-active" *ngFor="let task of tasks">
+            <td><input type="checkbox" class="" [ngModel]="task.isDone"></td>
+            <td>{{ task.title }}</td>
+            <td><button class="btn btn-info"> Editar </button></td>
+            <td><button class="btn btn-danger"> Eliminar </button></td>
+            <td><button class="btn btn-secondary"> Ver </button></td>
           </tr>
-          <tr class="table-active">
-            <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-          <tr class="table-active">
-            <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-
         </tbody>
-      </table>-->
-      <div *ngFor="let task of tasks">
+      </table>
+      <!--<div *ngFor="let task of tasks">
           {{ task.title }}
-      </div>
+      </div>-->
 </div>

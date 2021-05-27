@@ -13,6 +13,10 @@ export class TasksService {
     return this.firestore.collection('tasks').get();
   }
 
+  getTasksUser(email: string){
+    return this.firestore.collection('tasks',ref => ref.where('email', '==', email)).get();
+  }
+
   addTask(task: any): Promise<any>{
     return this.firestore.collection('tasks').add(task)
   }

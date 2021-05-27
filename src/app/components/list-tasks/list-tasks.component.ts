@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
@@ -9,15 +11,24 @@ import { TasksService } from 'src/app/services/tasks.service';
 export class ListTasksComponent implements OnInit {
 
   tasks: any[] = [];
+  user: firebase.default.User;
 
-  constructor(private _tasksService: TasksService) { }
+
+  constructor(private _tasksService: TasksService, private authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getTasks();
+    this.authService.getCurrentUser().subscribe(actualUser=>{
+      if(actualUser){
+        this.user = actualUser;        
+        this.getTasks();
+      }else{
+        this.router.navigate(["/home"]);
+      }
+    })
   }
 
   getTasks(){
-    this._tasksService.getTasks().subscribe(data =>{
+    this._tasksService.getTasksUser(this.user.email).subscribe(data =>{
       data.docs.forEach((t:any) => {
         let task:any = {};
         task = t.data() // guardo data
