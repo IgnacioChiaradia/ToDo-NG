@@ -18,7 +18,9 @@ export class ListTasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(actualUser=>{
-      if(actualUser){
+      
+      if(actualUser){ 
+
         this.user = actualUser;        
         this.getTasks();
       }else{
@@ -29,10 +31,13 @@ export class ListTasksComponent implements OnInit {
 
   getTasks(){
     this._tasksService.getTasksUser(this.user.email).subscribe(data =>{
-      data.docs.forEach((t:any) => {
+      this.tasks=[]
+      data.forEach((t:any) => {
+       console.log("forech")
+       console.log(t);
         let task:any = {};
-        task = t.data() // guardo data
-        task.id = t.id; // guardo el id para despues poder modificar
+        task = t.payload.doc.data(); // guardo data
+        task.id = t.payload.doc.id; // guardo el id para despues poder modificar
         //console.log(task) // muestro la tares en consola
         this.tasks.push(task); // agregar al arreglo la tarea
       });
@@ -40,5 +45,17 @@ export class ListTasksComponent implements OnInit {
   })
 }
 
+  deleteTask(id: any){
+    this._tasksService.deleteTask(id).then(()=>{
+      console.log("eliminado")
+      
+    }).catch(()=>{
+      console.log("error, se rompio todo")
+    })
+  }
+
+
 }
+
+
 

@@ -18,6 +18,7 @@ import { ListTasksComponent } from './components/list-tasks/list-tasks.component
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetailsTaskComponent } from './components/details-task/details-task.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     ListTasksComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    DetailsTaskComponent
   ],
   imports: [
     BrowserModule,
