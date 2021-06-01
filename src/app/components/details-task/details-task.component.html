@@ -1,1 +1,11 @@
-<h1>{{id}}</h1>
+<div *ngIf="task" class="flex">
+
+<div class="card bg-secondary mb-3 center" style="max-width: 50rem;">
+    <div class="card-header">{{ date }}</div>
+    <div class="card-body">
+      <h4 class="card-title">{{ task.title }}</h4>
+      <p class="card-text">{{ task.description }}</p>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
@@ -14,7 +15,11 @@ export class ListTasksComponent implements OnInit {
   user: firebase.default.User;
 
 
-  constructor(private _tasksService: TasksService, private authService:AuthService, private router: Router) { }
+  constructor(
+    private _tasksService: TasksService, 
+    private authService:AuthService, 
+    private router: Router,
+    private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(actualUser=>{
@@ -33,8 +38,6 @@ export class ListTasksComponent implements OnInit {
     this._tasksService.getTasksUser(this.user.email).subscribe(data =>{
       this.tasks=[]
       data.forEach((t:any) => {
-       console.log("forech")
-       console.log(t);
         let task:any = {};
         task = t.payload.doc.data(); // guardo data
         task.id = t.payload.doc.id; // guardo el id para despues poder modificar
@@ -54,7 +57,17 @@ export class ListTasksComponent implements OnInit {
     })
   }
 
+  taskChangeState(id){
+    this.tasks.forEach((t) => {
+      if(t.id === id){ 
+        this.firestore
+          .collection('tasks')
+          .doc(id)
+          .update({isDone: !t.isDone})
+      }
+    })
 
+  }
 }
 
 

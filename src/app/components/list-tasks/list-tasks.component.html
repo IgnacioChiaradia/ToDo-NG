@@ -14,11 +14,11 @@
             <th class="text-end" scope="col">Visualizar</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="table-active" *ngFor="let task of tasks">
+        <tbody *ngFor="let task of tasks">
+          <tr class="table-active"  [ngClass]="{' bg-success': task.isDone}">
           <td>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+              <input class="form-check-input" type="checkbox" id="done" [checked]='task.isDone' (click)='taskChangeState(task.id)'>
           
             </div></td>
             <td>{{ task.title }}</td>

@@ -46,9 +46,9 @@ export class CreateTaskComponent implements OnInit {
         createAt: this.createTask.value.createAt,
         isDone: this.createTask.value.isDone
       }
-      console.log(task);
+
       this.taskService.addTask(task).then(()=>{
-        console.log("agregado");
+
         this.router.navigate(["/list"]);
       }).catch(error => {
         console.log("error");  
