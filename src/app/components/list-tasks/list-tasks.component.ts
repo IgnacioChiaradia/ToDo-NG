@@ -53,8 +53,6 @@ export class ListTasksComponent implements OnInit {
   deleteTask(id: any){
     const taskTitle = this.tasks.find(task=>task.id == id).title //ask if better way
     this._tasksService.deleteTask(id).then(()=>{
-      console.log(this.tasks);
-      console.log(id);
       this.toastr.info('Tarea ' + taskTitle + ' eliminada exitosamente');      
     }).catch(()=>{
       console.log("error removing task")
