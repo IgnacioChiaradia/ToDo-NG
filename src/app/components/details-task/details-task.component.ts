@@ -37,6 +37,8 @@ export class DetailsTaskComponent implements OnInit {
 
   }
 
+  
+
   getTask(){
     this._tasksService.getTask(this.id,this.user.email).subscribe(data =>{
       let thetask = {
@@ -51,6 +53,8 @@ export class DetailsTaskComponent implements OnInit {
       
       if(thetask.email == this.user.email){
         this.task = thetask;
+        let desp = this.task.description.split(' ');
+        console.log(desp)
         this.changeDate(this.task.createAt)
       }else{
         this.router.navigate(["/home"]);
