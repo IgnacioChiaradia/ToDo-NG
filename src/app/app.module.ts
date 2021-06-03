@@ -20,6 +20,9 @@ import { CreateTaskComponent } from './components/create-task/create-task.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsTaskComponent } from './components/details-task/details-task.component';
 
+
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,11 @@ import { DetailsTaskComponent } from './components/details-task/details-task.com
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-bottom-right' //this line :(
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

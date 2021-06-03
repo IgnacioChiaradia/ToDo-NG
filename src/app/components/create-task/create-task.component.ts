@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { title } from 'process';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
@@ -15,7 +17,11 @@ export class CreateTaskComponent implements OnInit {
   submitted: Boolean = false;
   user: firebase.default.User
 
-  constructor(private fb: FormBuilder, private taskService: TasksService, private router: Router, private authService: AuthService) {
+  constructor(private fb: FormBuilder,
+      private taskService: TasksService,
+      private router: Router,
+      private authService: AuthService,
+      private toastr: ToastrService) {
 
     this.createTask = this.fb.group({
       title: ["", Validators.required],
@@ -48,17 +54,20 @@ export class CreateTaskComponent implements OnInit {
       }
 
       this.taskService.addTask(task).then(()=>{
+        this.showSuccess(task.title);
 
         this.router.navigate(["/list"]);
       }).catch(error => {
         console.log("error");  
       })
-
-
     }else{
-      console.log("No valido wuacho");
+      console.log("Invalid");
     }
 
+  }
+
+  showSuccess(taskTitle: String) {
+    this.toastr.success('Tarea ' + taskTitle + " creada exitosamete", 'Tarea creada');
   }
 
 }

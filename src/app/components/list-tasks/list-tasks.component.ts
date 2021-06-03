@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
@@ -19,7 +20,8 @@ export class ListTasksComponent implements OnInit {
     private _tasksService: TasksService, 
     private authService:AuthService, 
     private router: Router,
-    private firestore: AngularFirestore) { }
+    private firestore: AngularFirestore,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(actualUser=>{
@@ -49,11 +51,13 @@ export class ListTasksComponent implements OnInit {
 }
 
   deleteTask(id: any){
+    const taskTitle = this.tasks.find(task=>task.id == id).title //ask if better way
     this._tasksService.deleteTask(id).then(()=>{
-      console.log("eliminado")
-      
+      console.log(this.tasks);
+      console.log(id);
+      this.toastr.info('Tarea ' + taskTitle + ' eliminada exitosamente');      
     }).catch(()=>{
-      console.log("error, se rompio todo")
+      console.log("error removing task")
     })
   }
 
