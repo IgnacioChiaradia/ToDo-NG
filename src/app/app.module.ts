@@ -23,6 +23,7 @@ import { DetailsTaskComponent } from './components/details-task/details-task.com
 
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     ListTasksComponent,
     CreateTaskComponent,
-    DetailsTaskComponent
+    DetailsTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

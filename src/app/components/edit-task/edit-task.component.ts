@@ -1,28 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
 @Component({
-  selector: 'app-details-task',
-  templateUrl: './details-task.component.html',
-  styleUrls: ['./details-task.component.css']
+  selector: 'app-edit-task',
+  templateUrl: './edit-task.component.html',
+  styleUrls: ['./edit-task.component.css']
 })
-export class DetailsTaskComponent implements OnInit {
+export class EditTaskComponent implements OnInit {
 
+  editTask: FormGroup;
+  submitted: Boolean = false;
   task:any | null;
   id:any | null;
   user: firebase.default.User;
-  date: any;
 
   constructor(
+    private fb: FormBuilder,
     private aroute: ActivatedRoute,
     private _tasksService: TasksService,
     private authService:AuthService,
-    private router: Router
-    ) { 
-   this.id = this.aroute.snapshot.paramMap.get("id");
+    private router: Router,
+    private toastr: ToastrService
+  ) { 
+    this.id = this.aroute.snapshot.paramMap.get("id");
+
+    this.editTask = this.fb.group({
+      title: ["", Validators.required],
+      description: ["", Validators.required],
+    })
   }
 
   ngOnInit(): void {
@@ -34,10 +43,7 @@ export class DetailsTaskComponent implements OnInit {
         this.router.navigate(["/home"]);
       }
     })
-
   }
-
-  
 
   getTask(){
     this._tasksService.getTask(this.id,this.user.email).subscribe(data =>{
@@ -51,18 +57,22 @@ export class DetailsTaskComponent implements OnInit {
         
       if(thetask.email == this.user.email){
         this.task = thetask;
-        let desp = this.task.description.split(' ');
-        console.log(desp)
-        this.changeDate(this.task.createAt)
       }else{
         this.router.navigate(["/home"]);
       }
   })
 }
 
-changeDate(date){
+updateTask(){
+  console.log(this.task)
+  this._tasksService.editTask(this.task, this.id).then(()=>{
+    this.toastr.success('Tarea ' + this.task.title + " actualizada con éxito", 'Tarea Actualizada');
+    this.router.navigate(["/list"])
 
-  this.date = new Date(date).toLocaleDateString('es-AR')
+  }).catch(err => {
+    console.log(err)
+    this.toastr.error("Error al intenter actualizada la tarea", "Error")
+  })
 }
 
 }
