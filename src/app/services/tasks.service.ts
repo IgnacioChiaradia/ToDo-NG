@@ -12,6 +12,7 @@ export class TasksService {
   getTasks(){
     return this.firestore.collection('tasks').get();
   }
+<<<<<<< HEAD
 
   getTasksUser(email: string): Observable<any>{
     return this.firestore.collection('tasks',ref => ref.where('email', '==', email)).snapshotChanges();
@@ -36,4 +37,6 @@ export class TasksService {
     .update(task)
   }
 
+=======
+>>>>>>> b0443d3a0cd043fde6294f899104e8a4b917334f
 }
