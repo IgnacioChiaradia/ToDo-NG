@@ -15,14 +15,25 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './components/home/home.component';
 import { ListTasksComponent } from './components/list-tasks/list-tasks.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetailsTaskComponent } from './components/details-task/details-task.component';
+
+
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    ListTasksComponent
+    ListTasksComponent,
+    CreateTaskComponent,
+    DetailsTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +41,13 @@ import { ListTasksComponent } from './components/list-tasks/list-tasks.component
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BsDropdownModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-bottom-right' //this line :(
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
