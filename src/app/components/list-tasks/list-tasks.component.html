@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div class="header">
+      <h2 class="text-center">Mis tareas</h2>
+      <button class="btn btn-primary" [routerLink]="['/create']">Agregar</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            
+            <th scope="col">Realizada</th>
+            <th scope="col">Titulo</th>
+            <th class="text-end" scope="col">Editar</th>
+            <th class="text-end" scope="col">Eliminar</th>
+            <th class="text-end" scope="col">Visualizar</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let task of tasks">
+          <tr class="table-active"  [ngClass]="{' bg-success': task.isDone}">
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="done" [checked]='task.isDone' (click)='taskChangeState(task.id)'>
+          
+            </div></td>
+            <td>{{ task.title }}</td>
+            <td class="text-end"><button [routerLink]="['/edit/', task.id]" class="btn btn-info"> Editar </button></td>
+            <td class="text-end"><button (click)=deleteTask(task.id) class="btn btn-danger"> Eliminar </button></td>
+            <td class="text-end"><button class="btn btn-secondary" [routerLink]="['/details/', task.id]" > Ver </button></td>
+          </tr>
+        </tbody>
+      </table>
+      <!--<div *ngFor="let task of tasks">
+          {{ task.title }}
+      </div>-->
+</div>
