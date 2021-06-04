@@ -80,7 +80,7 @@ export class CreateTaskComponent implements OnInit {
     const translationThatProbablyShouldntBeHereButIDontKnowEnoghtAngularToKnowWhereToPutIt = {"title": "Titulo", "description": "Descripción"}; //need spanish translation because consistency.
     if (controlErrors != null) {//if there are errors
           Object.keys(controlErrors).forEach(keyError => {//loop errors
-            this.toastr.error(translationThatProbablyShouldntBeHereButIDontKnowEnoghtAngularToKnowWhereToPutIt[key] + ' no puede estar vacio'); //show toast            
+            this.toastr.error(translationThatProbablyShouldntBeHereButIDontKnowEnoghtAngularToKnowWhereToPutIt[key] + ' No puede estar vacio'); //show toast            
           });
         }
       });
