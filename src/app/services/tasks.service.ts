@@ -29,4 +29,11 @@ export class TasksService {
     return this.firestore.collection('tasks').doc(id).delete();
   }
 
+  editTask(task:any, id:any): Promise<any>{
+    return this.firestore
+    .collection('tasks')
+    .doc(id)
+    .update(task)
+  }
+
 }
