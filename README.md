@@ -1,6 +1,6 @@
 # Angular todo
 
-#### Trabajo practico para la materia Metodologia en Sistemas 2, en el cual aplicaremos metodologias agiles, particularmente SCRUM  
+#### Trabajo practico POC - Seminario, en el cual se investigacion sobre Firebase  
 
 | Integrantes  |
 | ----------- | 
