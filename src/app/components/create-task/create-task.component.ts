@@ -86,4 +86,9 @@ export class CreateTaskComponent implements OnInit {
       });
     }
 
+    uploadFile = ($event) => {
+
+            
+    }
+
 }

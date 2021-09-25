@@ -12,6 +12,7 @@
             <th class="text-end" scope="col">Editar</th>
             <th class="text-end" scope="col">Eliminar</th>
             <th class="text-end" scope="col">Visualizar</th>
+            <th class="text-end" scope="col">Image</th>
           </tr>
         </thead>
         <tbody *ngFor="let task of tasks">
@@ -25,6 +26,7 @@
             <td class="text-end"><button [routerLink]="['/edit/', task.id]" class="btn btn-info"> Editar </button></td>
             <td class="text-end"><button (click)=deleteTask(task.id) class="btn btn-danger"> Eliminar </button></td>
             <td class="text-end"><button class="btn btn-secondary" [routerLink]="['/details/', task.id]" > Ver </button></td>
+            <td class="text-end"><img src={{taks.image}} alt="" />  </td>
           </tr>
         </tbody>
       </table>

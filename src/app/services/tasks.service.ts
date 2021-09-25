@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TasksService {
 
-  constructor(private firestore: AngularFirestore ) {}
+  constructor(private firestore: AngularFirestore, private storage: AngularFireStorage) {}
 
   getTasks(){
     return this.firestore.collection('tasks').get();
@@ -34,6 +35,13 @@ export class TasksService {
     .collection('tasks')
     .doc(id)
     .update(task)
+  }
+
+  addImage(event){
+    const file = event.target.files[0];
+    const filePath = 'name-your-file-path-here';
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(file);
   }
 
 }

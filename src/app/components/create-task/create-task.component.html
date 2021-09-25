@@ -12,6 +12,10 @@
         <textarea formControlName="description" class="form-control" id="floatingInput" rows="3" style="height:200px" placeholder="Descripción"></textarea>
         <label for="floatingInput">Descripción</label>
       </div>
+      
+      <div class="form-floating mt-5">
+        <input type="file" (change)="uploadFile($event)">
+      </div>
 
       <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Agregar</button>
     </form>
