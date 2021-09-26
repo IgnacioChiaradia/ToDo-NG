@@ -14,7 +14,12 @@
       </div>
       
       <div class="form-floating mt-5">
-        <input type="file" (change)="uploadFile($event)">
+        <input type="file" accept="image/png,image/jpg" (change)="changeFile($event)">
+      </div>
+
+      <div *ngIf="percentage | async as pct">
+        <progress [value]='pct' max='100'></progress>
+        {{ pct | number }}%
       </div>
 
       <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Agregar</button>

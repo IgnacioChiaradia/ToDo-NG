@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { title } from 'process';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-task',
@@ -16,6 +17,14 @@ export class CreateTaskComponent implements OnInit {
   createTask: FormGroup;
   submitted: Boolean = false;
   user: firebase.default.User
+
+  // porcentaje de la subida de la imagen
+  percentage : Observable<number>;
+
+  // evento input image
+  eventInput: any
+  // snap de lo que se esta cargando
+  snapshot: any
 
   constructor(private fb: FormBuilder,
       private taskService: TasksService,
@@ -45,21 +54,34 @@ export class CreateTaskComponent implements OnInit {
   }
 
   addTask(){
-    if(this.createTask.valid){
+
       const task: any = {
         title: this.createTask.value.title,
         description: this.createTask.value.description,
         email: this.user.email,
         createAt: this.createTask.value.createAt,
+        image: null,
         isDone: this.createTask.value.isDone
       }
 
-      this.taskService.addTask(task).then(()=>{
-        this.showSuccess(task.title);
-        this.router.navigate(["/list"]);
-      }).catch(error => {
-        console.log("error");  
-      })
+    // si todos los campos son validos
+    if(this.createTask.valid){
+
+      if(this.eventInput){
+        // llamo a la funcion de que sube la image y agregar la tarea
+        this.addTaskAnduploadFile(task);
+      }else{
+        // si no se cargo ninguna imagen directamente subo la image asi nomas 
+        this.taskService.addTask(task).then(()=>{
+          this.showSuccess(task.title);
+          this.router.navigate(["/list"]);
+        }).catch(error => {
+          console.log("error");  
+        })
+
+      }
+
+        
     }else{
       this.getFormValidationErrors()
       console.log("Invalid");
@@ -86,9 +108,22 @@ export class CreateTaskComponent implements OnInit {
       });
     }
 
-    uploadFile = ($event) => {
-
-            
+    // guarda el evento del input osea la imagen que se selecciono
+    changeFile = ($event) => {
+      this.eventInput = $event
+      console.log('changeFile')
+      console.log($event)
     }
 
+    // agrega tarea y sube imagen
+    addTaskAnduploadFile = (task) => {
+      let taskRet = this.taskService.addImage(task,this.eventInput)
+      // si devuelve la tarea redirecciono
+      if(taskRet){
+        this.showSuccess(task.title);
+        this.router.navigate(["/list"]);
+      }
+
+      
+    }
 }

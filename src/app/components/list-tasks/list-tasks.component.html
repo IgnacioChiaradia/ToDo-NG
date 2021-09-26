@@ -26,7 +26,10 @@
             <td class="text-end"><button [routerLink]="['/edit/', task.id]" class="btn btn-info"> Editar </button></td>
             <td class="text-end"><button (click)=deleteTask(task.id) class="btn btn-danger"> Eliminar </button></td>
             <td class="text-end"><button class="btn btn-secondary" [routerLink]="['/details/', task.id]" > Ver </button></td>
-            <td class="text-end"><img src={{taks.image}} alt="" />  </td>
+            <td class="text-end">
+              <p *ngIf="!task.image">S/img</p>
+              <img *ngIf="task.image" [src]='task.image' width="50" alt="" />
+            </td>
           </tr>
         </tbody>
       </table>

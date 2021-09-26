@@ -45,6 +45,7 @@ export class DetailsTaskComponent implements OnInit {
         email: data.payload.data()['email'],
         title: data.payload.data()['title'],
         isDone: data.payload.data()['isDone'],
+        image: data.payload.data()['image'],
         createAt: data.payload.data()['createAt'],
         description: data.payload.data()['description']
       }
