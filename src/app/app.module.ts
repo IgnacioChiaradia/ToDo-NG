@@ -1,3 +1,5 @@
+import { MessagingService } from './services/messaging.service';
+import { AngularFireMessaging, AngularFireMessagingModule } from '@angular/fire/messaging';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsTaskComponent } from './components/details-task/details-task.component';
 
 
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 @NgModule({
@@ -39,6 +41,7 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireMessagingModule,
     AngularFirestoreModule,
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
@@ -49,7 +52,7 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
       positionClass :'toast-bottom-right' //this line :(
     })
   ],
-  providers: [],
+  providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

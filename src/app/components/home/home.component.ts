@@ -1,3 +1,4 @@
+import { MessagingService } from './../../services/messaging.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  message;
+  constructor(private messagingService: MessagingService) { }
 
   ngOnInit(): void {
+    this.messagingService.requestPermission()
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
   }
 
 }
