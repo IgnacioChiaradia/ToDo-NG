@@ -57,12 +57,12 @@ export class DetailsTaskComponent implements OnInit {
       }else{
         this.router.navigate(["/home"]);
       }
-  })
-}
+    })
+  }
 
-changeDate(date){
-
-  this.date = new Date(date).toLocaleDateString('es-AR')
-}
+  changeDate(date){
+    //this.date = new Date(date).toLocaleDateString('es-AR')
+    this.date = date.toDate()
+  }
 
 }

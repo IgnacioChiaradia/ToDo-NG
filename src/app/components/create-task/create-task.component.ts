@@ -6,6 +6,9 @@ import { title } from 'process';
 import { AuthService } from 'src/app/services/auth.service';
 import { TasksService } from 'src/app/services/tasks.service';
 
+import * as firebase from 'firebase/app';
+//import 'firebase/firestore'
+
 @Component({
   selector: 'app-create-task',
   templateUrl: './create-task.component.html',
@@ -28,7 +31,7 @@ export class CreateTaskComponent implements OnInit {
       title: ["", Validators.required],
       description: ["", Validators.required],
       email: ["", Validators.email],
-      createAt: [Date.now()],
+      createAt: firebase.default.firestore.FieldValue.serverTimestamp(),//[Date.now()],
       isDone: [false]
     })
 
