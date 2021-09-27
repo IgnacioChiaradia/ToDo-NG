@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.messagingService.requestPermission()
-    this.messagingService.receiveMessage()
-    this.message = this.messagingService.currentMessage
+    //this.messagingService.receiveMessage()
+
   }
 
 }

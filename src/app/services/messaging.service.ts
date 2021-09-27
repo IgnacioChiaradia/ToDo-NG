@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs';
-
+import firebase from 'firebase/app';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,12 +9,15 @@ export class MessagingService {
 
   currentMessage = new BehaviorSubject(null);
 
+  messaging = firebase.messaging();
+
   constructor(private angularFireMessaging: AngularFireMessaging) { 
-    this.angularFireMessaging.messages.subscribe((_messaging: AngularFireMessaging) => {
-        _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-        _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-      }
-      )
+    //this.angularFireMessaging.messages.subscribe((_messaging: AngularFireMessaging) => {
+    //    _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+    //    _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+    //  }
+    //)
+    
   }
 
 
