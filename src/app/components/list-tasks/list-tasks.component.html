@@ -12,19 +12,24 @@
             <th class="text-end" scope="col">Editar</th>
             <th class="text-end" scope="col">Eliminar</th>
             <th class="text-end" scope="col">Visualizar</th>
+            <th class="text-end" scope="col">Image</th>
           </tr>
         </thead>
         <tbody *ngFor="let task of tasks">
           <tr class="table-active"  [ngClass]="{' bg-success': task.isDone}">
           <td>
-            <div class="form-check form-switch">
+            <div class="form-check form-switch" style="margin-top: 15px; margin-left: 5px;">
               <input class="form-check-input" type="checkbox" id="done" [checked]='task.isDone' (click)='taskChangeState(task.id)'>
-          
-            </div></td>
-            <td>{{ task.title }}</td>
+            </div>
+          </td>
+            <td style="padding-top: 20px;">{{ task.title }}</td>
             <td class="text-end"><button [routerLink]="['/edit/', task.id]" class="btn btn-info"> Editar </button></td>
             <td class="text-end"><button (click)=deleteTask(task.id) class="btn btn-danger"> Eliminar </button></td>
             <td class="text-end"><button class="btn btn-secondary" [routerLink]="['/details/', task.id]" > Ver </button></td>
+            <td class="text-end">
+              <img *ngIf="!task.image" src='../../../assets/img/noimg.png' width="60" />
+              <img *ngIf="task.image" [src]='task.image' width="50" alt="" />
+            </td>
           </tr>
         </tbody>
       </table>

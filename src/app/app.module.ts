@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -45,6 +46,7 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    AngularFireStorageModule,
     ToastrModule.forRoot({
       positionClass :'toast-bottom-right' //this line :(
     })
