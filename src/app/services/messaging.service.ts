@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs';
-import firebase from 'firebase/app';
+
 @Injectable({
   providedIn: 'root'
 })
 export class MessagingService {
 
-  currentMessage = new BehaviorSubject(null);
-
-  messaging = firebase.messaging();
 
   constructor(private angularFireMessaging: AngularFireMessaging) { 
     //this.angularFireMessaging.messages.subscribe((_messaging: AngularFireMessaging) => {
@@ -23,25 +20,26 @@ export class MessagingService {
 
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe( (token) => {
+      console.log('este es el token')
       console.log(token);
-      this.receiveMessage()
-    },
-    (err) => {
+      //this.receiveMessage()
+    }, (err) => {
     console.error('Unable to get permission to notify.', err);
     }
     );
   }
 
+  
   receiveMessage() {
-    this.angularFireMessaging.messages.subscribe(
+    this.angularFireMessaging.onMessage(
       (payload) => {
         console.log("new message received. ", payload);
-        this.currentMessage.next(payload);
+        console.log('----')
         // para probar
-        this.showCustomNotification(payload)
+       // this.showCustomNotification(payload)
         })
     }
-    
+   /* 
     showCustomNotification(payload:any){
       let notify_data = payload['notification'];
       let title = notify_data['title'];
@@ -59,6 +57,6 @@ export class MessagingService {
         window.location.href = 'https://www.google.com.ar'
       }
     }
-  
+  */
   }
 
