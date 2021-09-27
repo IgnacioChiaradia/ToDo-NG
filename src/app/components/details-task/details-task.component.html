@@ -10,7 +10,8 @@
   </div>
 
 <div class="text-center mt-3 pb-5">
-  <img [src]='task.image' width="250" loading='lazy' alt="imagen tarea" />
+  <img [src]='task.image' *ngIf="task.image" width="250" loading='lazy' alt="imagen tarea" />
+  <img *ngIf="!task.image" src='../../../assets/img/noimg.png' width="250" />
   <h4 class="card-title title">{{ task.title }}</h4>
     <p class="card-text">{{ task.description }}</p>
 
